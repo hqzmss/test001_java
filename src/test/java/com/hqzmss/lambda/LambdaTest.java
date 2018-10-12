@@ -2,10 +2,10 @@ package com.hqzmss.lambda;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 class LambdaTest {
-    private static void test(int x) {
-        System.out.println("x=" + x);
-    }
 
     @Test
      void test() {
@@ -26,17 +26,24 @@ class LambdaTest {
 
     @Test
     void testHasParam() {
-        /*funcHasParam(new IFunctionParam() {
-            @Override
-            public void test(int x) {
-                System.out.println("x=" + x);
-            }
-        });*/
+        funcHasParam(System.out::println);
 
-        funcHasParam(LambdaTest::test);
+        Runnable runnable = () -> System.out.println("890");
+        System.out.println(runnable);
     }
 
     private void funcHasParam(IFunctionParam functionParam) {
         functionParam.test(3);
+    }
+
+    @Test
+    void testList() {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
+        //old way
+        for(Integer n : list) {
+            System.out.println(n);
+        }
+
+        list.forEach(System.out::println);
     }
 }
