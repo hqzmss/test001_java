@@ -111,6 +111,9 @@ class LambdaTest {
         List<Integer> list = Arrays.asList(45, 89, 34, 342, 9, 12, 998);
         IntSummaryStatistics summaryStatistics = list.stream().mapToInt(x -> x).summaryStatistics();
         System.out.println(summaryStatistics.getMax());
+        System.out.println(summaryStatistics.getAverage());
+        System.out.println(summaryStatistics.getCount());
+        System.out.println(summaryStatistics.getSum());
     }
 
     @Test
