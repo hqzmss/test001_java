@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 class LambdaTest {
 
@@ -45,5 +46,26 @@ class LambdaTest {
         }
 
         list.forEach(System.out::println);
+    }
+
+    @Test
+    void testForEach() {
+        List<String> list = Arrays.asList("123", "456", "jfkew", "中华人民共和国");
+
+        list.forEach(System.out::println);
+    }
+
+    @Test
+    void testPredicate() {
+        List<String> languages = Arrays.asList("Java", "C++", "PHP", "html", "JavaScript", "CSS");
+        filter(languages, s -> s.startsWith("J"));
+
+        filter(languages, s -> true);
+
+        filter(languages, s -> false);
+    }
+
+    private void filter(List<String> list, Predicate<String> predicate) {
+        list.stream().filter(predicate).map(name -> "name=" + name).forEach(System.out::println);
     }
 }
