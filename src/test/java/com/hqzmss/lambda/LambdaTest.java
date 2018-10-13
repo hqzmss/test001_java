@@ -3,8 +3,11 @@ package com.hqzmss.lambda;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class LambdaTest {
 
@@ -83,5 +86,36 @@ class LambdaTest {
         List<Integer> list = Arrays.asList(100, 200, 300, 400, 500);
         double total = list.stream().mapToDouble(cost -> cost + .12 * cost).sum();
         System.out.println("total=" + total);
+    }
+
+    @Test
+    void testFilter() {
+        List<String> list = Stream.of("flfj", "fjef", "ioe", "ner", "klwiexk", "alksex").
+                filter(u -> u.length() >= 6).collect(Collectors.toList());
+        list.forEach(System.out::println);
+    }
+
+    @Test
+    void testMap2() {
+        String list = Stream.of("jfklew", "fkwelf", "ixhji").map(String::toUpperCase).collect(Collectors.joining(", "));
+        System.out.println(list);
+    }
+
+    @Test
+    void testDistinct() {
+        Stream.of(3, 4, 4, 5, 4, 3, 2, 9).distinct().forEach(System.out::println);
+    }
+
+    @Test
+    void testSummary() {
+        List<Integer> list = Arrays.asList(45, 89, 34, 342, 9, 12, 998);
+        IntSummaryStatistics summaryStatistics = list.stream().mapToInt(x -> x).summaryStatistics();
+        System.out.println(summaryStatistics.getMax());
+    }
+
+    @Test
+    void testVar() {
+        var s = "56";
+        System.out.println(s);
     }
 }
