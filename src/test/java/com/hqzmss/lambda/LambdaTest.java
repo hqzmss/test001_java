@@ -70,4 +70,18 @@ class LambdaTest {
     private void filter(List<String> list, Predicate<String> predicate) {
         list.stream().filter(predicate).map(name -> "name=" + name).forEach(System.out::println);
     }
+
+    @Test
+    void testMap() {
+        List<Integer> list = Arrays.asList(100, 200, 300, 400, 500);
+        list.stream().mapToDouble(integer -> integer + integer * .12).forEach(System.out::println);
+        list.stream().map(cost -> cost + cost * .12).forEach(System.out::println);
+    }
+
+    @Test
+    void testSum() {
+        List<Integer> list = Arrays.asList(100, 200, 300, 400, 500);
+        double total = list.stream().mapToDouble(cost -> cost + .12 * cost).sum();
+        System.out.println("total=" + total);
+    }
 }
