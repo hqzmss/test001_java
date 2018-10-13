@@ -115,10 +115,4 @@ class LambdaTest {
         System.out.println(summaryStatistics.getCount());
         System.out.println(summaryStatistics.getSum());
     }
-
-    @Test
-    void testVar() {
-        var s = "56";
-        System.out.println(s);
-    }
 }
