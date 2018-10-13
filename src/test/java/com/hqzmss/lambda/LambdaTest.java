@@ -59,10 +59,12 @@ class LambdaTest {
     void testPredicate() {
         List<String> languages = Arrays.asList("Java", "C++", "PHP", "html", "JavaScript", "CSS");
         filter(languages, s -> s.startsWith("J"));
-
         filter(languages, s -> true);
-
         filter(languages, s -> false);
+
+        Predicate<String> predicate = (n) -> n.startsWith("J");
+        Predicate<String> length = n -> n.length() >= 4;
+        languages.stream().filter(predicate.and(length)).forEach(System.out::println);
     }
 
     private void filter(List<String> list, Predicate<String> predicate) {
